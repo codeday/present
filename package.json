@@ -21,7 +21,7 @@
     "memoize-one": "^5.1.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
-    "next": "9.3.2",
+    "next": "11.1.1",
     "prop-types": "^15.7.2",
     "qrcode.react": "^0.9.3",
     "random-seed": "^0.3.0",
