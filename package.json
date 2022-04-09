@@ -19,7 +19,7 @@
     "luxon": "^2.1.1",
     "markdown-it": "^10.0.0",
     "memoize-one": "^5.1.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.26",
     "next": "9.3.2",
     "prop-types": "^15.7.2",
