@@ -2,6 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Srnd from '../server/srndApi';
+import Cities from '../components/cities';
+import styled from 'styled-components';
+
+const CityContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
 
 export default class Index extends React.Component {
   static propTypes = {
@@ -21,13 +32,11 @@ export default class Index extends React.Component {
       <div>
         <h1>CodeDay Present</h1>
         <p>Pick a city...</p>
-        <ul>
-          {events.map((event) => (
-            <li>
-              <Link href={`/e/${event.id}`}>{event.name}</Link>
-            </li>
+        <CityContainer>
+          {events.map((event, index) => (
+            <Cities key={index} href={`/e/${event.id}`} city_event={event} />
           ))}
-        </ul>
+        </CityContainer>
       </div>
     );
   }

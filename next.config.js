@@ -11,5 +11,8 @@ module.exports = {
 
     return config;
   },
+  compiler: {
+    styledComponents: true
+  },
   port: 8001,
 };
