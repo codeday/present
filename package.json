@@ -20,7 +20,7 @@
     "markdown-it": "^10.0.0",
     "memoize-one": "^5.1.1",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.26",
+    "moment-timezone": "^0.5.35",
     "next": "9.3.2",
     "prop-types": "^15.7.2",
     "qrcode.react": "^0.9.3",
