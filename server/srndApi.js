@@ -111,6 +111,7 @@ export default class EventInfoApi {
             startDate
             endDate
             region {
+              name
               timezone
             }
             venue {
@@ -167,9 +168,9 @@ export default class EventInfoApi {
 
     return {
       id: eventId,
-      name: `CodeDay ${event.regionName} ${eventGroup.title.replace('CodeDay ', '')}`,
+      name: `CodeDay ${event.region.name} ${eventGroup.title.replace('CodeDay ', '')}`,
       webname: event.webname,
-      regionName: event.regionName,
+      regionName: event.region.name,
       batchName: eventGroup.title.replace('CodeDay ', ''),
       venueName: event.venue?.name,
       startsAt: eventStart.toISO(),
