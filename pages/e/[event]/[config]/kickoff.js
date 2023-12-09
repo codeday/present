@@ -66,7 +66,6 @@ export default withRouter(class Index extends React.Component {
       communityPartners,
       additionalSlides,
     } = this.props;
-
     return (
       <div>
         <Head>

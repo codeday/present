@@ -103,14 +103,16 @@ export default class EventInfoApi {
 
   static async getClear(eventId) {
     const res = await apiFetch(`
-      query GetEventQuery ($eventId: String!, $now: CmsDateTime!){
+      query GetEventQuery ($eventId: String!){
         clear {
           event(where:{id: $eventId}) {
             id
-            regionName: name
             webname: contentfulWebname
             startDate
             endDate
+            region {
+              timezone
+            }
             venue {
               name
             }
@@ -122,52 +124,46 @@ export default class EventInfoApi {
               name
               start
             }
-          }
-        }
-
-        cms {
-          events (limit: 1, where: { program:{ webname:"codeday" }, endsAt_gte: $now }) {
-            items {
-              title
-              startsAt
-              kickoffVideo {
-                url
-              }
-              kickoffVideoCaptions {
-                url
-              }
-              theme
-              themeBackgrounds {
-                items {
-                  url(transform:{width:1920, height:1080, resizeStrategy:FIT})
+            disableTheme: getMetadata(key: "theme.disable")
+            customTheme: getMetadata(key: "theme.custom.text")
+            customThemeBackgrounds: getMetadata(key: "theme.custom.backgrounds")
+            eventGroup {
+              cmsEventGroup {
+                title
+                startsAt
+                kickoffVideo {
+                  url
+                }
+                kickoffVideoCaptions {
+                  url
+                }
+                theme
+                themeBackgrounds {
+                  items {
+                    url(transform:{width:1920, height:1080, resizeStrategy:FIT})
+                  }
                 }
               }
             }
           }
         }
       }
-    `, { eventId, now: DateTime.now().minus({ days: 1 }).toISO()  });
+    `, { eventId });
 
     const event = res.clear?.event;
-    const eventGroup = res.cms?.events?.items[0];
+    const eventGroup = event?.eventGroup?.cmsEventGroup;
+    const region = event?.region
     if (!eventGroup || !event) return null;
 
-    const region = await apiFetch(`
-      query GetRegion ($webname: String!) {
-        cms {
-          regions (where:{webname: $webname}, limit: 1) {
-            items {
-              timezone
-            }
-          }
-        }
-      }
-    `, { webname: event.webname })
-    const timezone = region?.cms?.regions.items[0]?.timezone || 'America/Los_Angeles';
-
+    const timezone = region?.timezone || 'America/Los_Angeles';
 
     const eventStart = DateTime.fromISO(clearTimezone(event.startDate), { zone: timezone }).set({ hour: 12 });
     const eventEnd = DateTime.fromISO(clearTimezone(event.endDate), { zone: timezone }).set({ hour: 12 });
+
+    let customThemeBackgrounds = null;
+    try {
+      customThemeBackgrounds = JSON.parse(event.customThemeBackgrounds)
+    } catch (e) {}
 
     return {
       id: eventId,
@@ -191,8 +187,8 @@ export default class EventInfoApi {
       sponsors: event.sponsors,
       kickoffVideo: eventGroup.kickoffVideo?.url,
       kickoffVideoCaptions: eventGroup.kickoffVideoCaptions?.url,
-      theme: eventGroup.theme,
-      themeImages: eventGroup.themeBackgrounds?.items?.map((b) => b.url),
+      theme: !event.disableTheme? (event.customTheme || (event.customThemeBackgrounds? '' : eventGroup.theme)) : '',
+      themeImages: !event.disableTheme? (customThemeBackgrounds || (event.customTheme? [] : eventGroup.themeBackgrounds?.items?.map((b) => b.url))): [],
     };
   }
 }
