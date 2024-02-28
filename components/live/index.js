@@ -59,27 +59,13 @@ const RadioBox = styled.div`
 const SocialBox = styled.div`
   position: absolute;
   left: ${leftWidth}vw;
+  background-color: #fff;
   top: 0;
-  bottom: 5vh;
+  bottom: 0;
   right: 0;
-  padding: 3vh 3vw 0 2vw;
+  padding: 1vw;
   box-sizing: border-box;
   overflow: hidden;
-
-  ${Title} {
-    margin-top: 0;
-  }
-
-  &:after {
-    content: "";
-    display: block;
-    height: 15vh;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
-  }
 `;
 
 export default class Live extends React.Component {
@@ -108,8 +94,11 @@ export default class Live extends React.Component {
           {config.radio && <NowPlaying align="left" />}
         </RadioBox>
         <SocialBox>
-          <Title>#codeday #{config.hashtag}</Title>
-          <Social />
+          <iframe
+            style={{ aspectRatio: '1920 / 1080', border: 0, position: 'relative'  }}
+            src="https://obs.codeday.org/outro"
+            width="100%"
+          ></iframe>
         </SocialBox>
       </Slide>
     );
