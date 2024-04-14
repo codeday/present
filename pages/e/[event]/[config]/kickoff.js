@@ -73,8 +73,8 @@ export default withRouter(class Index extends React.Component {
         </Head>
         <Deck event={event} config={config} pastProjects={pastProjects} globalSponsors={globalSponsors} communityPartners={communityPartners}>
           <Title />
-          {event.kickoffVideo ? <Video /> : null}
-          {globalSponsors && globalSponsors.filter((s) => s.audio).length > 0 ? <VideoSponsors /> : null }
+          {/* {event.kickoffVideo ? <Video /> : null} */}
+          {/* {globalSponsors && globalSponsors.filter((s) => s.audio).length > 0 ? <VideoSponsors /> : null } */}
           <Sponsors />
           <Explainer />
           <CreateCode />

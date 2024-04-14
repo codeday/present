@@ -66,7 +66,7 @@ export default () => (
           {m}
         </div>
       ))}
-      <Large>Based exclusively on <FeaturedText>creativity</FeaturedText>.</Large>
+      <Large>Based exclusively on <FeaturedText>creativity</FeaturedText> - judged by <FeaturedText>professional artists</FeaturedText></Large>
     </AwardBlock>
   </RainbowSlide>
 );

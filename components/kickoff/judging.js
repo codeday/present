@@ -26,7 +26,7 @@ export default () => (
   <Slide>
     <AwardBlock>
       <Title>
-        Local Event Awards
+        Event Awards
       </Title>
       <div>
         <img src="https://f1.srnd.org/codeday/awards/HoloBestInShow.png" alt="Best in Show" />
@@ -34,6 +34,8 @@ export default () => (
         <img src="https://f1.srnd.org/codeday/awards/HoloSpecialStack.png" alt="Special Prize (3x)" />
       </div>
       <Large>Based on <FeaturedText>creativity</FeaturedText> and <FeaturedText>trying something new</FeaturedText>.</Large>
+      <br />
+      <Large>Judged by <FeaturedText>you</FeaturedText>!</Large>
     </AwardBlock>
   </Slide>
 );

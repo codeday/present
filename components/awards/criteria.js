@@ -11,9 +11,10 @@ const FeaturedText = styled.span`
 export default () => (
   <Slide>
     <Title>Time for awards!</Title>
-    <Title>Here&apos;s how our judges decided... (in order of importance)<br /><br /></Title>
+    {/* <Title>Here&apos;s how our judges decided... (in order of importance)<br /><br /></Title>
     <Large block>1. <FeaturedText>Difficulty.</FeaturedText> Did you really push yourself?</Large>
     <Large block>2. <FeaturedText>Creativity.</FeaturedText> Have we seen this a thousand times?</Large>
-    <Large block>3. <FeaturedText>Polish.</FeaturedText> Anything else?</Large>
+    <Large block>3. <FeaturedText>Polish.</FeaturedText> Anything else?</Large> */}
+    <Title>Here's how <FeaturedText>you</FeaturedText> voted</Title>
   </Slide>
 );
