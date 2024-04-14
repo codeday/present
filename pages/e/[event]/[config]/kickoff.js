@@ -77,7 +77,7 @@ export default withRouter(class Index extends React.Component {
           {/* {globalSponsors && globalSponsors.filter((s) => s.audio).length > 0 ? <VideoSponsors /> : null } */}
           <Sponsors />
           <Explainer />
-          <CreateCode />
+          {/* <CreateCode /> */}
           <Judging />
           <JudgingWorldChampion />
           {event.theme ? <Theme /> : null}
