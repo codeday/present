@@ -64,7 +64,7 @@ export default class EventInfoApi {
   static async getCommunityPartners(event) {
     const res = await apiFetch(`query {
     cms {
-      communityPartners {
+      communityPartners(where: { OR: [{ region: { webname: "${event.webname}" } }, {regionCollection_exists:false}] }) {
         items {
           logo {
             url
