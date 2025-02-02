@@ -104,7 +104,6 @@ export default class Live extends React.Component {
         <RadioBox>{config.radio && <NowPlaying align="left" />}</RadioBox>
         <SocialBox>
           <OBS/>
-          {/* intent is what slides to pull up. valid solutions are intro, outro and one other but i can't be bothered to remember. */}
         </SocialBox>
       </Slide>
     );
