@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Head from 'next/head';
-import styled from 'styled-components';
-import { Slide } from '../screen';
-import { Title } from '../screen/text';
-import Schedule from './schedule';
-import NowPlaying from '../now-playing';
-import Social from './social';
-import Video from './video';
+import React from "react";
+import PropTypes from "prop-types";
+import Head from "next/head";
+import styled from "styled-components";
+import { Slide } from "../screen";
+import { Title } from "../screen/text";
+import Schedule from "./schedule";
+import NowPlaying from "../now-playing";
+import Social from "./social";
+import OBS from "./obs";
 
 const leftWidth = 30;
 
@@ -31,7 +31,11 @@ const ScheduleBox = styled.div`
     top: 0;
     bottom: 0;
     width: 4vw;
-    background-image: linear-gradient(to right, rgba(255, 104, 107, 0), rgba(255, 104, 107, 1));
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 104, 107, 0),
+      rgba(255, 104, 107, 1)
+    );
   }
 
   &:after {
@@ -42,7 +46,10 @@ const ScheduleBox = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: linear-gradient(rgba(255, 104, 107, 0), rgba(255, 104, 107, 1));
+    background-image: linear-gradient(
+      rgba(255, 104, 107, 0),
+      rgba(255, 104, 107, 1)
+    );
   }
 `;
 
@@ -73,7 +80,7 @@ export default class Live extends React.Component {
   static propTypes = {
     event: PropTypes.object.isRequired,
     config: PropTypes.object.isRequired,
-  }
+  };
 
   componentDidMount() {
     this.forceUpdate();
@@ -81,21 +88,22 @@ export default class Live extends React.Component {
 
   render() {
     const { event, config } = this.props;
-    if (typeof window === 'undefined') return null;
+    if (typeof window === "undefined") return null;
 
     return (
       <Slide padding="0">
         <Head>
-          <link rel="stylesheet" href="https://f1.codeday.org/fonts/gosha-sans/all.css" />
+          <link
+            rel="stylesheet"
+            href="https://f1.codeday.org/fonts/gosha-sans/all.css"
+          />
         </Head>
         <ScheduleBox>
           <Schedule event={event} config={config} />
         </ScheduleBox>
-        <RadioBox>
-          {config.radio && <NowPlaying align="left" />}
-        </RadioBox>
+        <RadioBox>{config.radio && <NowPlaying align="left" />}</RadioBox>
         <SocialBox>
-          <Video purpose="intro"/>
+          <OBS/>
         </SocialBox>
       </Slide>
     );
