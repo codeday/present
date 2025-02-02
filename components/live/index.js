@@ -7,6 +7,7 @@ import { Title } from '../screen/text';
 import Schedule from './schedule';
 import NowPlaying from '../now-playing';
 import Social from './social';
+import Video from './video';
 
 const leftWidth = 30;
 
@@ -94,11 +95,7 @@ export default class Live extends React.Component {
           {config.radio && <NowPlaying align="left" />}
         </RadioBox>
         <SocialBox>
-          <iframe
-            style={{ aspectRatio: '1920 / 1080', border: 0, position: 'relative'  }}
-            src="https://obs.codeday.org/outro"
-            width="100%"
-          ></iframe>
+          <Video purpose="intro"/>
         </SocialBox>
       </Slide>
     );
